@@ -18,9 +18,9 @@ export default function App() {
     //<SignUp3/>
     //<Home/>
     //<Information/>
-    //<Call/>
+    <Call/>
     //<Diary/>
-    <Chat/>
+    //<Chat/>
   //   <NavigationContainer>
   //   <stack.Navigator >
   //     <stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp}></stack.Screen> 
