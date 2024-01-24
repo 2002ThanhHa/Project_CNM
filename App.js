@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import SignUp from './Screen/SignUp';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SignUp/>
+  //   <NavigationContainer>
+  //   <stack.Navigator >
+  //     <stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp}></stack.Screen> 
+     
+  //   </stack.Navigator>
+  // </NavigationContainer>
   );
+
 }
 
 const styles = StyleSheet.create({
