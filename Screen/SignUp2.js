@@ -27,7 +27,7 @@ export default function SignUp2() {
                 </View>
                             
                <View>
-                    <TextInput placeholder='Số điện thoại' style={{fontSize: 18,borderWidth:'none', outlineStyle:'none', marginLeft: 15, marginTop:8, color: 'grey'}}></TextInput>
+                    <TextInput placeholder='Số điện thoại' keyboardType='numeric' style={{fontSize: 18,borderWidth:'none', outlineStyle:'none', marginLeft: 15, marginTop:8, color: 'grey'}}></TextInput>
                     <View style={{height: 2, backgroundColor:'#1FAEEB', width: 300, marginLeft: 10, marginTop: 7}}></View>
                </View>
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-nativ
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function SignUp() {
+export default function SignUp({ navigation, route }) {
   return (
     <View style={{backgroundColor:'white', flex: 1}}>
       <View /*Header*/ style={{backgroundColor:'#EFB0C9', height: 60, flexDirection:'row'}}>

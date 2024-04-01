@@ -14,9 +14,21 @@ export default function Chat() {
             <AntDesign name="left" size={22} color="white" style={{marginTop: 18, marginLeft: 10}} />
           </Pressable>
           <Text style={{fontSize: 22, fontWeight: '400', color:'white', marginTop: 13, marginLeft: 10, }}>Sury</Text>
-          <FontAwesome name="phone" size={24} color="white" style={{marginTop: 15, marginLeft: 190}}/>
-          <FontAwesome name="video-camera" size={22} color="white" style={{marginTop: 15, marginLeft: 15}}/>
-          <Entypo name="text" size={24} color="white" style={{marginTop: 15, marginLeft: 15}}/>
+          
+          <Pressable onPress={() => navigation.navigate('Call')}>
+             <FontAwesome name="phone" size={24} color="white" style={{marginTop: 15, marginLeft: 190}}/>
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('CallVideo')}>
+             <FontAwesome name="video-camera" size={22} color="white" style={{marginTop: 15, marginLeft: 15}}/>         
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('')}>
+            <Entypo name="text" size={24} color="white" style={{marginTop: 15, marginLeft: 15}}/>
+          </Pressable>
+
+         
+         
       </View>
       <View style={{height: 535, backgroundColor:'#D7CFCF'}}></View>
 

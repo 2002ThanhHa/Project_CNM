@@ -1,7 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import {Text, View, Image, Pressable } from 'react-native';
 
-export default function Home() {
+
+export default function Home({navigation}) {
   return (
     <View style={{backgroundColor:'#EFB0C9', flex: 1}}>
       <View /*Header*/ style={{backgroundColor:'#EFB0C9'}}>
