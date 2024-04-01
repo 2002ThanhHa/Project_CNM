@@ -126,8 +126,7 @@ export default function Diary() {
             </FlatList>
           </View>
           <View>
-            <FlatList 
-              
+            <FlatList               
               data={srticles}
                 renderItem={({item})=>{
                   return(
@@ -197,7 +196,7 @@ export default function Diary() {
               </View>
 
               <View style={{marginLeft: 15}}>
-                <Pressable onPress={() => navigation.navigate('HomeMain')}>
+                <Pressable onPress={() => navigation.navigate('Me')}>
                   <MaterialCommunityIcons name="account" size={31} color="grey" style={{marginLeft: 13}}/>
                   <Text style={{fontSize: 15}}>Cá nhân</Text>
                 </Pressable>                

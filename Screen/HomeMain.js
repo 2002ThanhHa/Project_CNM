@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function HomeMain(navigation) {
   return (
     <View style={styles.container}>
-      <Text>Hoem main</Text>
+      <Text>Home main</Text>
       <StatusBar style="auto" />
       <View /*Center*/>
         <Pressable

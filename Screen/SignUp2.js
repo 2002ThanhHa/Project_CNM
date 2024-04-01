@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function SignUp2() {
+export default function SignUp2({navigation, route}) {
   return (
     <View style={{backgroundColor:'white', flex: 1}}>
         <View /*Header*/ style={{backgroundColor:'#EFB0C9', height: 60, flexDirection:'row'}}>
@@ -41,7 +41,7 @@ export default function SignUp2() {
                 <p style={{color:'#1FAEEB', marginTop: -1}}>điều khoản sử dụng Zalo</p>
             </Text>
             <Pressable
-                onPress={() => navigation.navigate('SignUp3')}
+                onPress={() => navigation.navigate('Home')}
             >
                 <FontAwesome name="arrow-circle-right" size={28} color="#1FAEEB" style={{marginLeft: 80, marginTop: 8}} />
             </Pressable> 

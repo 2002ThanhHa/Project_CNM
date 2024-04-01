@@ -5,11 +5,17 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Call() {
+export default function Call({navigation, route}) {
   return (
       <View style={{backgroundColor:'#EFB0C9', flex: 1}}>
         <View style={{flexDirection:'row'}}>
-          <AntDesign name="leftcircle" size={28} color="#A19D9D" style={{marginLeft: 10, marginTop: 10}}/>
+          <Pressable
+            onPress={()=> navigation.navigate('Chat')}
+          >
+             <AntDesign name="leftcircle" size={28} color="#A19D9D" style={{marginLeft: 10, marginTop: 10}}/>
+          </Pressable>
+         
+
           <Text style={{marginLeft: 10, marginTop: 10, fontSize: 20, color: 'white', marginLeft: 130, fontWeight: '500'}}>Zalo</Text>
           <Image source={require('../Image/Video_call.png')} style={{marginLeft: 10, marginTop: 10, width: 28, height:28, marginLeft: 140}}></Image>
         </View>
@@ -31,10 +37,12 @@ export default function Call() {
             <Text style={{marginTop: 10, fontSize: 20, color: 'white', marginLeft: 20, fontWeight: '500'}}>Loa</Text>
           </View>
 
-          <View>
+          <Pressable
+            onPress={()=> navigation.navigate('Chat')}
+          >
             <Image source={require('../Image/call.png')} style={{marginLeft: 90, width: 50, height:50}}></Image>
             <Text style={{marginTop: 10, fontSize: 20, color: 'white', marginLeft: 80, fontWeight: '500'}}>Kết thúc</Text>
-          </View>
+          </Pressable>
 
           <View>
             <Ionicons name="mic-circle-sharp" size={60} color="#A19D9D" style={{marginLeft: 50, marginTop: -5}}/>

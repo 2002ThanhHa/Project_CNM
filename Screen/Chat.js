@@ -6,7 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function Chat() {
+export default function Chat({navigation, route}) {
   return (
     <View style={{backgroundColor:'white', flex: 1}}>
       <View style={{backgroundColor:'#EFB0C9', height: 60, flexDirection:'row'}}>
