@@ -58,15 +58,17 @@ const LoginScreen = ({}) => {
     <View
       style={{
         backgroundColor: "white",
+        flex: 1,
       }}
     >
       <KeyboardAvoidingView>
-        <View style={{
-          backgroundColor: "#efb0c9",
-          padding: 10,
-          height: 50,
-          
-        }}>
+        <View
+          style={{
+            backgroundColor: "#efb0c9",
+            padding: 10,
+            height: 50,
+          }}
+        >
           <Pressable
             onPress={() => navigation.navigate("Wellcome")}
             style={{ flexDirection: "row" }}
@@ -85,7 +87,7 @@ const LoginScreen = ({}) => {
           </Pressable>
         </View>
 
-        <View style={{ marginTop: 50 , paddingLeft: 40}}>
+        <View style={{ marginTop: 50, paddingLeft: 40 }}>
           <View>
             <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
               Email
@@ -102,13 +104,13 @@ const LoginScreen = ({}) => {
                 width: 300,
               }}
               placeholderTextColor={"black"}
-              placeholder="nhap dia chi mail cua ban"
+              placeholder="Nhập email của bạn"
             />
           </View>
 
           <View style={{ marginTop: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              mat khau
+              Password
             </Text>
 
             <TextInput
@@ -123,19 +125,18 @@ const LoginScreen = ({}) => {
                 width: 300,
               }}
               placeholderTextColor={"black"}
-              placeholder="nhap mat khau cua ban"
+              placeholder="Nhập mật khẩu của bạn"
             />
           </View>
-
+          <Text style={{ color: "blue", marginTop: 10 }}> Quên mật khẩu</Text>
           <Pressable
             onPress={handleLogin}
             style={{
               width: 200,
-              backgroundColor: "#4A55A2",
+              backgroundColor: "#D37289",
               padding: 15,
               marginTop: 50,
-              marginLeft: "auto",
-              marginRight: "auto",
+              marginLeft: 50,
               borderRadius: 6,
             }}
           >
@@ -147,7 +148,7 @@ const LoginScreen = ({}) => {
                 textAlign: "center",
               }}
             >
-              Dang Nhap
+              Đăng Nhập
             </Text>
           </Pressable>
 
@@ -156,7 +157,7 @@ const LoginScreen = ({}) => {
             style={{ marginTop: 15 }}
           >
             <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>
-              chua co tai khoan? dang ky
+              Bạn đã có tài khoản ? Đăng ký
             </Text>
           </Pressable>
         </View>

@@ -16,17 +16,17 @@ const StackNavigator = () => {
     
     <NavigationContainer>
       <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
           name="Wellcome"
           component={Wellcome}
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Register"
           component={RegisterScreen}
           options={{ headerShown: false }}
@@ -37,7 +37,7 @@ const StackNavigator = () => {
 
         <Stack.Screen name="Chats" component={ChatsScreen} />
 
-        <Stack.Screen name="Messages" component={ChatMessagesScreen} /> */}
+        <Stack.Screen name="Messages" component={ChatMessagesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

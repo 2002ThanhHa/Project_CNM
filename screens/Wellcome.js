@@ -18,7 +18,7 @@ export default function Wellcome({navigation}) {
         </Pressable>
 
         <Pressable
-          onPress={() => navigation.navigate('RegisterScreen')}
+          onPress={() => navigation.navigate('Register')}
           style={{ width: 220, height: 45, borderRadius: 20, backgroundColor: '#D37289', marginLeft: 80, marginTop: 20}}
         >
             <Text style={{fontSize: 22, fontWeight: '500', color:'black', marginTop: 5, marginLeft: 65,}}>Đăng ký</Text>

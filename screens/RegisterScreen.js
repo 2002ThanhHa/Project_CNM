@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { AntDesign } from "@expo/vector-icons";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
@@ -51,32 +52,39 @@ const RegisterScreen = () => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "pink",
-        padding: 10,
-        alignItems: "center",
+        backgroundColor: "white",
       }}
     >
       <KeyboardAvoidingView>
         <View
           style={{
-            marginTop: 100,
-            justifyContent: "center",
-            alignItems: "center",
+            backgroundColor: "#efb0c9",
+            padding: 10,
+            height: 50,
           }}
         >
-          <Text style={{ color: "#4A55A2", fontSize: 17, fontWeight: "600" }}>
-            Dang Ky
-          </Text>
-
-          <Text style={{ fontSize: 17, fontWeight: "600", marginTop: 15 }}>
-            Dang Ky Tai Khoan Cua Ban
-          </Text>
+          <Pressable
+            onPress={() => navigation.navigate("Wellcome")}
+            style={{ flexDirection: "row" }}
+          >
+            <AntDesign name="left" size={28} color="white" />
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 25,
+                fontWeight: "600",
+                paddingLeft: 10,
+              }}
+            >
+              Đăng ký
+            </Text>
+          </Pressable>
         </View>
 
-        <View style={{ marginTop: 50 }}>
+        <View style={{ marginTop: 50, marginLeft: 40 }}>
           <View style={{ marginTop: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Ten
+              Tên
             </Text>
 
             <TextInput
@@ -90,7 +98,7 @@ const RegisterScreen = () => {
                 width: 300,
               }}
               placeholderTextColor={"black"}
-              placeholder="Nhap Ten Cua Ban"
+              placeholder="Nhập tên của bạn"
             />
           </View>
 
@@ -110,13 +118,13 @@ const RegisterScreen = () => {
                 width: 300,
               }}
               placeholderTextColor={"black"}
-              placeholder="Nhap Dia Chi Email Cua Ban"
+              placeholder="Nhập địa chỉ email của bạn"
             />
           </View>
 
           <View style={{ marginTop: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Mat Khau
+              Password
             </Text>
 
             <TextInput
@@ -131,39 +139,40 @@ const RegisterScreen = () => {
                 width: 300,
               }}
               placeholderTextColor={"black"}
-              placeholder="Nhap Mat Khau"
+              placeholder="Nhập mật khẩu của bạn"
             />
           </View>
 
-          { <View style={{ marginTop: 10 }}>
-            <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
-              Image
-            </Text>
+          {
+            <View style={{ marginTop: 10 }}>
+              <Text style={{ fontSize: 18, fontWeight: "600", color: "gray" }}>
+                Ảnh đại diện
+              </Text>
 
-            <TextInput
-              value={image}
-              onChangeText={(text) => setImage(text)}
-              style={{
-                fontSize: email ? 18 : 18,
-                borderBottomColor: "gray",
-                borderBottomWidth: 1,
-                marginVertical: 10,
-                width: 300,
-              }}
-              placeholderTextColor={"black"}
-              placeholder="Image"
-            />
-          </View> }
+              <TextInput
+                value={image}
+                onChangeText={(text) => setImage(text)}
+                style={{
+                  fontSize: email ? 18 : 18,
+                  borderBottomColor: "gray",
+                  borderBottomWidth: 1,
+                  marginVertical: 10,
+                  width: 300,
+                }}
+                placeholderTextColor={"black"}
+                placeholder="Nhập link ảnh đại diện của bạn"
+              />
+            </View>
+          }
 
           <Pressable
             onPress={handleRegister}
             style={{
               width: 200,
-              backgroundColor: "#4A55A2",
+              backgroundColor: "#D37289",
               padding: 15,
               marginTop: 50,
-              marginLeft: "auto",
-              marginRight: "auto",
+              marginLeft: 50,
               borderRadius: 6,
             }}
           >
@@ -175,7 +184,7 @@ const RegisterScreen = () => {
                 textAlign: "center",
               }}
             >
-              Dang Ky
+              Đăng ký
             </Text>
           </Pressable>
 
@@ -184,7 +193,7 @@ const RegisterScreen = () => {
             style={{ marginTop: 15 }}
           >
             <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>
-              Ban Da Co Tai Khoan? Dang Nhap
+              Bạn đã có tài khoản ? Đăng nhập
             </Text>
           </Pressable>
         </View>
