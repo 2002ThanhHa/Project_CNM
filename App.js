@@ -1,51 +1,23 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import StackNavigator from "./StackNavigator";
+import { UserContext } from "./UserContext";
 
-
-import SignUp from './Screen/SignUp';
-import SignUp2 from './Screen/SignUp2';
-import Home from './Screen/Home';
-import Information from './Screen/Information';
-import Chat from './Screen/Chat';
-import Call from './Screen/Call';
-import CallVideo from './Screen/CallVideo';
-import Diary from './Screen/Diary';
-import Timeline from './Screen/Timeline';
-import Profile from './Screen/Profile';
-import Search from './Screen/Search';
-import SignIn from './Screen/SignIn';
-import HomeMain from './Screen/HomeMain';
-import Contacts from './Screen/Contacts';
-import Discovery from './Screen/Discovery';
-import Me from './Screen/Me';
-
-
-const stack = createNativeStackNavigator();
 export default function App() {
-  return ( 
-    // <HomeMain/>
-    // <SignIn/>
-    // <Home/>
-    // <SignUp/>
-    // <SignUp2/>
-    // <Chat/>
-    // <Information/>
-    // <Call/>
-    // <Diary/>
-   
-
-    <NavigationContainer>
-      <stack.Navigator  >
-        <stack.Screen options={{ headerShown: false }} name="Home" component={Home}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUp}></stack.Screen> 
-        <stack.Screen options={{ headerShown: false }} name="SignUp2" component={SignUp2}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="Chat" component={Chat}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="Call" component={Call}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="Diary" component={Diary}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="Discovery" component={Discovery}></stack.Screen>
-        <stack.Screen options={{ headerShown: false }} name="Information" component={Information}></stack.Screen>   
-      </stack.Navigator>
-  </NavigationContainer>
+  return (
+    <>
+      <UserContext>
+        <StackNavigator />
+      </UserContext>
+    </>
   );
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
