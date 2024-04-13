@@ -1,6 +1,11 @@
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
-import React, { useEffect, useContext, useState, useRef } from "react";
-import axios from "axios";
+import React, {
+  useLayoutEffect,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { UserType } from "../UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,14 +13,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode";
-import User from "../components/User";
 
-const FriendsScreen = () => {
-  const navigation = useNavigation();
+const ProfileScreen = () => {
   const { userId, setUserId } = useContext(UserType);
-  const [users, setUsers] = useState([]);
-
+  const navigation = useNavigation();
   const scrollViewRef = useRef();
 
   const scrollToBottom = () => {
@@ -43,35 +44,12 @@ const FriendsScreen = () => {
     navigation.navigate("Login");
   };
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const token = await AsyncStorage.getItem("authToken");
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.userId;
-      setUserId(userId);
-
-      axios
-        .get(`http://localhost:8000/users/${userId}`)
-        .then((response) => {
-          setUsers(response.data);
-        })
-        .catch((error) => {
-          console.log("error retrieving users", error);
-        });
-    };
-
-    fetchUsers();
-  }, []);
-
-  console.log("users", users);
   return (
-    <View>
-      <View style={{ padding: 10 }}>
-        {users.map((item, index) => (
-          <User key={index} item={item} />
-        ))}
-      </View>
+    <View style={{ flex: 1 }}>
+      <View style={{height:150, borderWidth: 1, borderColor:'grey'}}>
 
+      </View>
+      <Button title="Logout" onPress={handleLogout} />
       <ScrollView
         ref={scrollViewRef}
         contentContainerStyle={{ flexGrow: 1, justifyContent: "flex-end" }}
@@ -115,6 +93,4 @@ const FriendsScreen = () => {
   );
 };
 
-export default FriendsScreen;
-
-const styles = StyleSheet.create({});
+export default ProfileScreen;

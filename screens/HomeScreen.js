@@ -1,83 +1,104 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React, { useLayoutEffect, useContext, useEffect, useState } from "react";
+import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import { UserType } from "../UserContext";
 import { useNavigation } from "@react-navigation/native";
+import UserChat from "../components/UserChat";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { UserType } from "../UserContext";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import User from "../components/User";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const [acceptedFriends, setAcceptedFriends] = useState([]);
   const { userId, setUserId } = useContext(UserType);
-  const [users, setUsers] = useState([]);
+  const navigation = useNavigation();
+  const scrollViewRef = useRef();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "",
-      headerLeft: () => (
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>Swift Chat</Text>
-      ),
-      headerRight: () => (
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          <Ionicons
-            onPress={() => navigation.navigate("Chats")}
-            name="chatbox-ellipses-outline"
-            size={32}
-            color="pink"
-          />
-          <MaterialIcons
-            onPress={() => navigation.navigate("Friends")}
-            name="people-outline"
-            size={32}
-            color="pink"
-          />
-          <Button title="Logout" onPress={handleLogout} />
-        </View>
-      ),
-    });
-  }, []);
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  };
 
-  const handleLogout = async () => {
-    // Clear the authentication token from AsyncStorage
-    await AsyncStorage.removeItem("authToken");
-
-    // Clear the user ID in the context
-    setUserId(null);
-
-    // Navigate to the login screen
-    navigation.navigate("Login");
+  const handleContentSizeChange = () => {
+    scrollToBottom();
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const token = await AsyncStorage.getItem("authToken");
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.userId;
-      setUserId(userId);
-
-      axios
-        .get(`http://localhost:8000/users/${userId}`)
-        .then((response) => {
-          setUsers(response.data);
-        })
-        .catch((error) => {
-          console.log("error retrieving users", error);
-        });
-    };
-
-    fetchUsers();
+    scrollToBottom();
   }, []);
 
-  console.log("users", users);
+  useEffect(() => {
+    const acceptedFriendsList = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/accepted-friends/${userId}`
+        );
+        const data = await response.json();
+
+        if (response.ok) {
+          setAcceptedFriends(data);
+        }
+      } catch (error) {
+        console.log("error showing the accepted friends", error);
+      }
+    };
+
+    acceptedFriendsList();
+  }, []);
+
+  console.log("friends", acceptedFriends);
+
   return (
-    <View>
-      <View style={{ padding: 10 }}>
-        {users.map((item, index) => (
-          <User key={index} item={item} />
-        ))}
+    <View style={{ flex: 1 }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Pressable>
+          {acceptedFriends.map((item, index) => (
+            <UserChat key={index} item={item} />
+          ))}
+        </Pressable>
+      </ScrollView>
+      
+      <View>
+        <ScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: "flex-end" }}
+          onContentSizeChange={handleContentSizeChange}
+          style={{ height: 60, marginTop: 10 }}
+        >
+          <View style={{ flexDirection: "row", gap: 50 }}>
+            <Ionicons
+              onPress={() => navigation.navigate("Chats")}
+              name="chatbox-ellipses-outline"
+              size={40}
+              color="pink"
+              style={{ marginTop: 15, marginLeft: 40 }}
+            />
+            <MaterialIcons
+              onPress={() => navigation.navigate("Friends")}
+              name="people-outline"
+              size={40}
+              color="pink"
+              style={{ marginTop: 15 }}
+            />
+
+            <Feather
+              onPress={() => navigation.navigate("Notification")}
+              name="bell"
+              size={35}
+              color="pink"
+              style={{ marginTop: 15 }}
+            />
+
+            <MaterialCommunityIcons
+              onPress={() => navigation.navigate("Profile")}
+              name="account"
+              size={40}
+              color="pink"
+              style={{ marginTop: 10 }}
+            />
+          </View>
+        </ScrollView>
       </View>
     </View>
   );

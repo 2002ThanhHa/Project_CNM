@@ -1,19 +1,45 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React, { useContext, useEffect, useState, useRef } from "react";
-import { UserType } from "../UserContext";
+import {StyleSheet, View, Text, ScrollView } from "react-native";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import UserChat from "../components/UserChat";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import axios from "axios";
+import { UserType } from "../UserContext";
+import FriendRequest from "../components/FriendRequest";
 
-const ChatsScreen = () => {
-  const [acceptedFriends, setAcceptedFriends] = useState([]);
+const NotificationScreen = () => {
   const { userId, setUserId } = useContext(UserType);
+  const [friendRequests, setFriendRequests] = useState([]);
   const navigation = useNavigation();
   const scrollViewRef = useRef();
 
+  useEffect(() => {
+    fetchFriendRequests();
+  }, []);
+
+  const fetchFriendRequests = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/friend-request/${userId}`
+      );
+      if (response.status === 200) {
+        const friendRequestsData = response.data.map((friendRequest) => ({
+          _id: friendRequest._id,
+          name: friendRequest.name,
+          email: friendRequest.email,
+          image: friendRequest.image,
+        }));
+
+        setFriendRequests(friendRequestsData);
+      }
+    } catch (err) {
+      console.log("error message", err);
+    }
+  };
+
+  //
   const scrollToBottom = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true });
@@ -28,39 +54,20 @@ const ChatsScreen = () => {
     scrollToBottom();
   }, []);
 
-  useEffect(() => {
-    const acceptedFriendsList = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8000/accepted-friends/${userId}`
-        );
-        const data = await response.json();
-
-        if (response.ok) {
-          setAcceptedFriends(data);
-        }
-      } catch (error) {
-        console.log("error showing the accepted friends", error);
-      }
-    };
-
-    acceptedFriendsList();
-  }, []);
-
-  console.log("friends", acceptedFriends);
-
+ console.log(friendRequests);
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Pressable>
-          {acceptedFriends.map((item, index) => (
-            <UserChat key={index} item={item} />
-          ))}
-        </Pressable>
-      </ScrollView>
-      
-      <View>
-        <ScrollView
+      {friendRequests.length > 0 && <Text>Your Friend Requests!</Text>}
+
+      {friendRequests.map((item, index) => (
+        <FriendRequest
+          key={index}
+          item={item}
+          friendRequests={friendRequests}
+          setFriendRequests={setFriendRequests}
+        />
+      ))}
+      <ScrollView
           ref={scrollViewRef}
           contentContainerStyle={{ flexGrow: 1, justifyContent: "flex-end" }}
           onContentSizeChange={handleContentSizeChange}
@@ -99,11 +106,9 @@ const ChatsScreen = () => {
             />
           </View>
         </ScrollView>
-      </View>
     </View>
   );
 };
 
-export default ChatsScreen;
-
+export default NotificationScreen;
 const styles = StyleSheet.create({});
