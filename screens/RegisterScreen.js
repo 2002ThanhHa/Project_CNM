@@ -96,6 +96,7 @@ const RegisterScreen = () => {
                 borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
+                outlineStyle:'none'
               }}
               placeholderTextColor={"black"}
               placeholder="Nhập tên của bạn"
@@ -116,6 +117,7 @@ const RegisterScreen = () => {
                 borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
+                outlineStyle:'none'
               }}
               placeholderTextColor={"black"}
               placeholder="Nhập địa chỉ email của bạn"
@@ -137,6 +139,7 @@ const RegisterScreen = () => {
                 borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
+                outlineStyle:'none'
               }}
               placeholderTextColor={"black"}
               placeholder="Nhập mật khẩu của bạn"
@@ -158,6 +161,7 @@ const RegisterScreen = () => {
                   borderBottomWidth: 1,
                   marginVertical: 10,
                   width: 300,
+                  outlineStyle:'none'
                 }}
                 placeholderTextColor={"black"}
                 placeholder="Nhập link ảnh đại diện của bạn"

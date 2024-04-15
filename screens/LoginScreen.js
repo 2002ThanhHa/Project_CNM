@@ -22,7 +22,7 @@ const LoginScreen = ({}) => {
         const token = await AsyncStorage.getItem("authToken");
 
         if (token) {
-          navigation.replace("Home");
+          navigation.replace("Chats");
         } else {
           // token not found , show the login screen itself
         }
@@ -102,6 +102,7 @@ const LoginScreen = ({}) => {
                 borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
+                outlineStyle:'none'
               }}
               placeholderTextColor={"black"}
               placeholder="Nhập email của bạn"
@@ -123,6 +124,7 @@ const LoginScreen = ({}) => {
                 borderBottomWidth: 1,
                 marginVertical: 10,
                 width: 300,
+                outlineStyle:'none'
               }}
               placeholderTextColor={"black"}
               placeholder="Nhập mật khẩu của bạn"

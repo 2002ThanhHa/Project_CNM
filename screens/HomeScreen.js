@@ -68,7 +68,6 @@ const HomeScreen = () => {
         >
           <View style={{ flexDirection: "row", gap: 50 }}>
             <Ionicons
-              onPress={() => navigation.navigate("Chats")}
               name="chatbox-ellipses-outline"
               size={40}
               color="pink"
