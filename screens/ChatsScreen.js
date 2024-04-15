@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef, } from "react";
 import { UserType } from "../UserContext";
 import { useNavigation } from "@react-navigation/native";
 import UserChat from "../components/UserChat";

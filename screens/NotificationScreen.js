@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text, ScrollView } from "react-native";
-import React, { useEffect, useRef, useContext, useState } from "react";
+import React, { useEffect, useRef, useContext, useState, useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -14,6 +14,16 @@ const NotificationScreen = () => {
   const [friendRequests, setFriendRequests] = useState([]);
   const navigation = useNavigation();
   const scrollViewRef = useRef();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "",
+      headerLeft: () => (
+        <Text style={{ fontSize: 16, fontWeight: "bold", marginLeft: 15 }}>Notification</Text>
+      ),
+      
+    });
+  }, []);
 
   useEffect(() => {
     fetchFriendRequests();

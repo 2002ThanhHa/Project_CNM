@@ -1,11 +1,5 @@
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
-import React, {
-  useLayoutEffect,
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import React, { useLayoutEffect, useContext, useEffect, useRef } from "react";
 import { UserType } from "../UserContext";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +12,17 @@ const ProfileScreen = () => {
   const { userId, setUserId } = useContext(UserType);
   const navigation = useNavigation();
   const scrollViewRef = useRef();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "",
+      headerLeft: () => (
+        <Text style={{ fontSize: 16, fontWeight: "bold", marginLeft: 15 }}>
+          Profile
+        </Text>
+      ),
+    });
+  }, []);
 
   const scrollToBottom = () => {
     if (scrollViewRef.current) {
@@ -46,9 +51,7 @@ const ProfileScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{height:150, borderWidth: 1, borderColor:'grey'}}>
-
-      </View>
+      <View style={{ height: 150, borderWidth: 1, borderColor: "grey" }}></View>
       <Button title="Logout" onPress={handleLogout} />
       <ScrollView
         ref={scrollViewRef}
